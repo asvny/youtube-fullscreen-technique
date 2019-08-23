@@ -32,13 +32,13 @@ interface FullScreenAPIs {
 }
 
 type FixDocument = HTMLDocument & FullScreenAPIs;
-type FixElement = HTMLElement & FullScreenAPIs; 
+type FixElement = HTMLElement & FullScreenAPIs;
 
 export default function VideoPlayer() {
   let { state, setFullscreenMode } = useAppState();
   let { isFullscreen } = state;
 
-  const handlePlayPause = (status: VideoStatus, actions: VideoActions) => (event : React.SyntheticEvent) => {
+  const handlePlayPause = (status: VideoStatus, actions: VideoActions) => (event: React.SyntheticEvent) => {
     let isPaused = status === "paused";
 
     if (isPaused) {
@@ -64,7 +64,7 @@ export default function VideoPlayer() {
     toggleFullscreen();
   };
 
-  const handleViewDetails = (event: React.SyntheticEvent)  => {
+  const handleViewDetails = (event: React.SyntheticEvent) => {
     window.scrollTo({
       top: window.pageYOffset + 250,
       behavior: "smooth"
@@ -72,7 +72,7 @@ export default function VideoPlayer() {
   };
 
   useEffect(() => {
-    let handleFullscreenChange = ()  => {
+    let handleFullscreenChange = () => {
       let doc = document as FixDocument;
       let isFullscreen =
         doc.fullscreenElement || doc.webkitIsFullScreen || doc.mozFullScreen || false;
@@ -82,7 +82,6 @@ export default function VideoPlayer() {
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
@@ -146,7 +145,7 @@ export default function VideoPlayer() {
   );
 }
 
-const numberToMin =  (number: string | number) => (parseFloat(String(number)) / 60).toFixed(2);
+const numberToMin = (number: string | number) => (parseFloat(String(number)) / 60).toFixed(2);
 
 // https://gist.github.com/demonixis/5188326
 function toggleFullscreen() {
@@ -160,14 +159,14 @@ function toggleFullscreen() {
     element.requestFullscreen ||
     element.webkitRequestFullScreen ||
     element.mozRequestFullScreen ||
-    function() {
+    function () {
       return false;
     };
   doc.cancelFullscreen =
     doc.cancelFullscreen ||
     doc.webkitCancelFullScreen ||
     doc.mozCancelFullScreen ||
-    function() {
+    function () {
       return false;
     };
 
