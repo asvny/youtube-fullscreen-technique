@@ -22,7 +22,7 @@ export default function Header() {
     <header className={`Header bg-gray-900 w-full flex px-10 py-3 shadow ${cls}`}>
       <Faux />
       <Logo />
-      <Faux ml="48" style={{ width: "500px" }} />
+      <Faux ml={48} style={{ width: "500px" }} />
 
       <Faux rounded ml="auto" />
       <Faux rounded />

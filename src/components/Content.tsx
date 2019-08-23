@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import Faux from "./Faux";
 
 export default function() {
   let fauxVideos = Array(6)
-    .fill()
+    .fill(null)
     .map((_, i) => <FauxVideo key={i} />);
 
   return (
@@ -68,7 +68,7 @@ export default function() {
   );
 }
 
-const FauxVideo = props => (
+const FauxVideo = () => (
   <div className="flex mb-4">
     <Faux depth={300} style={{ height: "95px", width: "175px" }} />
     <div className="flex-1 ml-2 py-2">
@@ -81,8 +81,12 @@ const FauxVideo = props => (
   </div>
 );
 
+interface FauxCreditsProps {
+  x: number,
+  y: number
+}
 
-const FauxCredits = props => (
+const FauxCredits = (props: FauxCreditsProps) => (
     <div className="flex mt-3">
     <Faux
       depth={300}

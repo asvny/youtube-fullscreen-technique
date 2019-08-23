@@ -1,6 +1,16 @@
 import React from "react";
 
-export default function Faux(props) {
+interface Props {
+  rounded?: Boolean,
+  depth?: Number,
+  ml?: Number | "auto",
+  mt?: Number,
+  bg?: "gray" | "blue" | "red",
+  class?: String | null,
+  style?: Object | null
+}
+
+export default function Faux(props: Props) {
   let { style, rounded = false, depth, ml = 3, mt = 0, bg = "gray" } = props;
   let radius = rounded ? "rounded-full" : "rounded";
   let _depth = depth ? depth : 800;

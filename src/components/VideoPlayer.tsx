@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import Video from "react-video-renderer";
+import Video, { VideoStatus, VideoActions } from "react-video-renderer";
 
 import { useAppState } from "./AppState";
 import {
@@ -12,11 +12,33 @@ import {
   ChevronDown
 } from "./Icons";
 
+interface FullScreenAPIs {
+  exitFullscreen: any;
+
+  cancelFullscreen: any;
+  webkitCancelFullScreen: any;
+  mozCancelFullScreen: any;
+
+  fullscreenElement: any;
+  mozFullScreenElement: any;
+  webkitFullscreenElement: any;
+
+  webkitIsFullScreen: any;
+  mozFullScreen: any;
+
+  requestFullscreen: any;
+  webkitRequestFullScreen: any;
+  mozRequestFullScreen: any;
+}
+
+type FixDocument = HTMLDocument & FullScreenAPIs;
+type FixElement = HTMLElement & FullScreenAPIs; 
+
 export default function VideoPlayer() {
   let { state, setFullscreenMode } = useAppState();
   let { isFullscreen } = state;
 
-  const handlePlayPause = (status, actions) => event => {
+  const handlePlayPause = (status: VideoStatus, actions: VideoActions) => (event : React.SyntheticEvent) => {
     let isPaused = status === "paused";
 
     if (isPaused) {
@@ -26,7 +48,7 @@ export default function VideoPlayer() {
     }
   };
 
-  const handleVolume = (isMuted, actions) => event => {
+  const handleVolume = (isMuted: Boolean, actions: VideoActions) => (event: React.SyntheticEvent) => {
     if (isMuted) {
       actions.unmute();
     } else {
@@ -34,7 +56,7 @@ export default function VideoPlayer() {
     }
   };
 
-  const handleFullScreen = event => {
+  const handleFullScreen = (event: React.SyntheticEvent) => {
     if (!document.fullscreenElement) {
       window.scrollTo(0, 0);
     }
@@ -42,7 +64,7 @@ export default function VideoPlayer() {
     toggleFullscreen();
   };
 
-  const handleViewDetails = event => {
+  const handleViewDetails = (event: React.SyntheticEvent)  => {
     window.scrollTo({
       top: window.pageYOffset + 250,
       behavior: "smooth"
@@ -50,9 +72,10 @@ export default function VideoPlayer() {
   };
 
   useEffect(() => {
-    let handleFullscreenChange = event => {
+    let handleFullscreenChange = ()  => {
+      let doc = document as FixDocument;
       let isFullscreen =
-        document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || false;
+        doc.fullscreenElement || doc.webkitIsFullScreen || doc.mozFullScreen || false;
 
       setFullscreenMode(isFullscreen);
     };
@@ -61,7 +84,7 @@ export default function VideoPlayer() {
     document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
 
 
-    return _ => {
+    return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
     };
@@ -72,7 +95,7 @@ export default function VideoPlayer() {
       <Video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">
         {(video, state, actions) => (
           <Fragment>
-            {React.cloneElement(video, {
+            {React.cloneElement(video as React.ReactElement<any>, {
               style: { height: isFullscreen ? "100vh" : "575px" },
               onClick: handlePlayPause(state.status, actions)
             })}
@@ -80,7 +103,6 @@ export default function VideoPlayer() {
               <progress
                 value={state.currentTime}
                 max={state.duration}
-                onChange={actions.navigate}
                 className="block slider w-full"
               />
 
@@ -124,14 +146,15 @@ export default function VideoPlayer() {
   );
 }
 
-const numberToMin = number => (parseFloat(number) / 60).toFixed(2);
+const numberToMin =  (number: string | number) => (parseFloat(String(number)) / 60).toFixed(2);
 
 // https://gist.github.com/demonixis/5188326
-function toggleFullscreen(event) {
-  var element = document.documentElement;
+function toggleFullscreen() {
+  let doc = document as FixDocument;
+  let element = doc.documentElement as FixElement;
 
-  var isFullscreen =
-    document.webkitIsFullScreen || document.mozFullScreen || false;
+  let isFullscreen =
+    doc.webkitIsFullScreen || doc.mozFullScreen || false;
 
   element.requestFullscreen =
     element.requestFullscreen ||
@@ -140,13 +163,13 @@ function toggleFullscreen(event) {
     function() {
       return false;
     };
-  document.cancelFullscreen =
-    document.cancelFullscreen ||
-    document.webkitCancelFullScreen ||
-    document.mozCancelFullScreen ||
+  doc.cancelFullscreen =
+    doc.cancelFullscreen ||
+    doc.webkitCancelFullScreen ||
+    doc.mozCancelFullScreen ||
     function() {
       return false;
     };
 
-  isFullscreen ? document.cancelFullscreen() : element.requestFullscreen();
+  isFullscreen ? doc.cancelFullscreen() : element.requestFullscreen();
 }

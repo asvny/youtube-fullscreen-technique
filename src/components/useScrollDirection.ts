@@ -23,14 +23,14 @@ export default function useScrollDirection() {
   return direction;
 }
 
-function throttle(fn, limit) {
+function throttle(fn: Function, limit: number) {
   let wait = false;
 
-  return function(...args) {
+  return function(...args : any) {
     if (!wait) {
       wait = true;
       setTimeout(() => {
-        fn.apply(this, args);
+        fn(...args);
         wait = false;
       }, limit);
     }

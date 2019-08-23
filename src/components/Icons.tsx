@@ -1,12 +1,12 @@
 import React from "react";
 
-export const PlayIcon = props => (
+export const PlayIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path fill="#fff" d="M12 26l6.5-4v-8L12 10zm6.5-4l6.5-4-6.5-4z" />
   </svg>
 );
 
-export const PauseIcon = props => (
+export const PauseIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path
       fill="#fff"
@@ -15,7 +15,7 @@ export const PauseIcon = props => (
   </svg>
 );
 
-export const VolumeIcon = props => (
+export const VolumeIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path
       d="M8 21h4l5 5V10l-5 5H8v6zm11-7v8c1.48-.68 2.5-2.23 2.5-4 0-1.74-1.02-3.26-2.5-4zm0-2.71c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77v2.06z"
@@ -24,7 +24,7 @@ export const VolumeIcon = props => (
   </svg>
 );
 
-export const MuteIcon = props => (
+export const MuteIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path
       fill="#fff"
@@ -33,7 +33,7 @@ export const MuteIcon = props => (
   </svg>
 );
 
-export const FullscreenIcon = props => (
+export const FullscreenIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path
       fill="#fff"
@@ -42,13 +42,13 @@ export const FullscreenIcon = props => (
   </svg>
 );
 
-export const ExitFullscreenIcon = props => (
+export const ExitFullscreenIcon = (props: Object) => (
   <svg viewBox="0 0 36 36" height="34" width="34" {...props}>
     <path fill="#fff" d="M14 14h-4v2h6v-6h-2v4zM22 14v-4h-2v6h6v-2h-4zM20 26h2v-4h4v-2h-6v6zM10 22h4v4h2v-6h-6v2z" />
   </svg>
 );
 
-export const ChevronDown = props => (
+export const ChevronDown = (props: Object) => (
   <svg viewBox="0 0 24 24" height="20" width="20" {...props}>
     <path
       fill="#fff"
