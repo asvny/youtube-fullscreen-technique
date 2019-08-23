@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", arial, sans-serif;
+  font-weight: 400;
+  color: #444;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.slider {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.slider::-webkit-progress-value {
+  background: #f00;
+}
+
+.slider::-moz-progress-bar {
+  background: #f00;
+}
+
+.Header {
+  z-index: 5;
+  transition: transform 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.Header.hide {
+  transform: translateY(-100%);
+}
+
+.Header.show {
+  transform: translateY(0%);
+}
