@@ -19,7 +19,7 @@ export default function Header() {
   }
 
   return (
-    <header className={`Header bg-gray-900 w-full flex px-10 py-3 shadow ${cls}`}>
+    <header className={`Header bg-gray-900 w-full flex items-center px-10 py-3 shadow ${cls}`}>
       <Faux />
       <Logo />
       <Faux ml={48} style={{ width: "500px" }} />
