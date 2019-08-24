@@ -6,13 +6,16 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1",
-    "react-video-renderer": "^2.4.3"
+    "react-video-renderer": "^2.4.3",
+    "tailwindcss": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm-run-all -p start:css start:js",
+    "build": "npm-run-all build:css build:js",
+    "start:js": "react-scripts start",
+    "build:js": "react-scripts build",
+    "start:css": "postcss src/style/tailwind.src.css -o src/style/tailwind.css -w",
+    "build:css": "postcss src/style/tailwind.src.css -o src/style/tailwind.css --env production"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +37,10 @@
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "@fullhuman/postcss-purgecss": "^1.2.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.3",
+    "purgecss": "^1.3.0"
   }
 }
