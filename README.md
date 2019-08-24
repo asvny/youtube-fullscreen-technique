@@ -2,7 +2,7 @@
 
 ## Youtube-fullscreen-technique
 
-It was always annoying to press ESC or exit fullscreen to play the desired video and the YouTube team solved this problem with an excellent UI technique to watch videos AND search stuff in fullscreen mode which I think has led to a great UX.
+It was always annoying to press ESC or exit fullscreen to play the desired video and the YouTube team solved this problem with an excellent UI technique to watch videos AND search stuff in fullscreen mode which overall results in better UX.
 
 **Demo** https://youtube-fullscreen-technique.netlify.com/
 
